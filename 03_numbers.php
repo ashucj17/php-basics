@@ -37,7 +37,7 @@ echo '<br>';
 
 // Decrement operator
 
-# when we use --$a, the value will decremented then it will displayed 
+# when we use --$a, the value will decremented then it will displayed
 // --$a;
 // echo $a . '<br>';
 
