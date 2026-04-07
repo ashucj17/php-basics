@@ -107,14 +107,21 @@ echo "</pre>";
 echo "array_merge() function is used to megre two arrays";
 $vegetables = ["Potato", "Tomato", "Pea"];
 echo "<pre>";
-var_dump(array_merge($fruits,$vegetables));
+// var_dump(array_merge($fruits,$vegetables));
+var_dump(...$fruits, ...$vegetables); // spread operator
 echo "</pre>";
 
 // Sorting of array (Reverse order also)
-
+echo "Sorting an array using sort() function" . "<br>";
 echo "<pre>";
-var_dump(sort($fruits));
-echo $fruits;
+sort($fruits);
+var_dump($fruits);
+echo "</pre>";
+
+echo "Sorting an array in reverse order using rsort() function" . "<br>";
+echo "<pre>";
+rsort($fruits);
+var_dump($fruits);
 echo "</pre>";
 
 
