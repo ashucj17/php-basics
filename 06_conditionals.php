@@ -25,33 +25,33 @@ if ($age == 18) {
 // Difference between == and ===
 echo "Difference between == and ===" . "<br>";
 if ($age == "18")
-    echo " == : it only check the value and ignore type". "<br>";
+    echo " == : it only check the value and ignore type" . "<br>";
 
 if ($age === "18") {
     echo "=== : value and type are equals " . "<br>";
-    }else{
-        echo "=== : not equal because type differs" . "<br>";
-        }
-        
-        // if AND
-        echo "if and  AND (&&) operator" . "<br>";
-        $my_age = 30;
-        if ($my_age === 30 && $salary === 300000){
-            echo "I have to achive it" . "<br>";
-            }
-            
-            // if OR
-            echo "if and  OR (||) operator" . "<br>";
-            if ($my_age === 35 || $salary === 300000)
-                echo "Target Locked" . "<br>";
-            
-            
-            // Ternary if
-            echo "Ternary if" . "<br>";
+} else {
+    echo "=== : not equal because type differs" . "<br>";
+}
 
-            echo ($my_age === 30)
-            ? "you are working" . "<br>"
-            : "You need to work hard" . "<br>";
+// if AND
+echo "if and  AND (&&) operator" . "<br>";
+$my_age = 30;
+if ($my_age === 30 && $salary === 300000) {
+    echo "I have to achive it" . "<br>";
+}
+
+// if OR
+echo "if and  OR (||) operator" . "<br>";
+if ($my_age === 35 || $salary === 300000)
+    echo "Target Locked" . "<br>";
+
+
+// Ternary if
+echo "Ternary if" . "<br>";
+
+echo ($my_age === 30)
+    ? "you are working" . "<br>"
+    : "You need to work hard" . "<br>";
 
 
 // Short ternary
@@ -70,12 +70,16 @@ echo "$day" . "<br>";
 
 $designation = "FSWD";
 
-switch($designation){
-    case "SDE": echo "Software Developer". "<br>";
+switch ($designation) {
+    case "SDE":
+        echo "Software Developer" . "<br>";
         break;
-    case "WebDev": echo "Web Developer". "<br>";
-    break;
-    case "FSWD": echo "Full Stack WordPress Developer". "<br>";
-    break;
-    default: echo "Not Applicable". "<br>";
+    case "WebDev":
+        echo "Web Developer" . "<br>";
+        break;
+    case "FSWD":
+        echo "Full Stack WordPress Developer" . "<br>";
+        break;
+    default:
+        echo "Not Applicable" . "<br>";
 }
