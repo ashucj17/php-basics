@@ -21,6 +21,7 @@ echo $p->surname . "<br>";
 // Employee.php
 
 require_once "employee.php";
+require_once "developer.php";
 
 $e = new Employee("Bhupendra","Sharma");
 $e->setemp_id(23561);
@@ -35,3 +36,9 @@ var_dump($e2);
 echo "</pre>";
 echo Employee::$counter. "<br>" ;
 echo Employee::getCounter();
+
+$e3 = new Developer("Rahul","Kumar", "Wordpress Developer");
+echo "<pre>";
+var_dump($e3);
+echo "</pre>";
+
