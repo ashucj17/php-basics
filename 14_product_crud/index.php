@@ -4,12 +4,9 @@
 $pdo = new PDO('mysql:host=localhost; port=3306; dbname=product_crud', 'root', '');
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-$statement = $pdo->prepare('SELECT * FROM products ORDER BY create_date DESC');
+$statement = $pdo->prepare('SELECT * FROM products ORDER BY created_at DESC');
 $statement->execute();
 $products = $statement->fetchAll(PDO::FETCH_ASSOC);
-echo "<pre>";
-var_dump($products);
-echo "</pre>";
 
 
 ?>
@@ -30,7 +27,7 @@ echo "</pre>";
     <h1>Product Crud</h1>
 
     <p>
-        <button href="create.php" class="btn btn-success">Create Product</button>
+        <a href="create.php" class="btn btn-success">Create Product</a>
     </p>
 
     <table class="table">
@@ -49,10 +46,12 @@ echo "</pre>";
             foreach ($products as $i=> $product): ?>
                 <tr>
                     <th scope="row"><?php echo $i + 1 ?></th>
-                    <td></td>
+                    <td>
+                        <img src="<?php echo $product['image'] ?>" alt="product_image">
+                    </td>
                     <td><?php echo $product['title'] ?></td>
                     <td><?php echo $product['price'] ?></td>
-                    <td><?php echo $product['create_date'] ?></td>
+                    <td><?php echo $product['created_at'] ?></td>
                     <td>
                         <button type="button" class="btn btn-sm btn-outline-primary">Edit</button>
                         <button type="button" class="btn btn-sm btn-outline-danger">Delete</button>

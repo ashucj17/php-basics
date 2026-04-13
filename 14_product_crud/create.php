@@ -9,6 +9,19 @@ $title = "";
 $description = "";
 $price = "";
 
+
+function randomString($n)
+{
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $str = '';
+    for ($i  = 0; $i < $n; $i++) {
+        $index = rand(0, strlen($characters) - 1);
+        $str .= $characters[$index];
+    }
+    return $str;
+}
+
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $title = $_POST['title'];
     $description = $_POST['description'];
@@ -23,18 +36,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $errors[] = 'Product price is required';
     }
 
+    if (!is_dir('images')) {
+        mkdir('images');
+    }
+
+
     if (empty($errors)) {
+
+        $imagePath = '';
+
+        $image = $_FILES['image'] ?? null;
+
+        if ($image && $image['tmp_name']) {
+            $imageName = randomString(8) . '_' . $image['name'];
+            $imagePath = 'images/' . $imageName;
+
+            move_uploaded_file($image['tmp_name'], $imagePath);
+        }
+
         $statement = $pdo->prepare("INSERT INTO products
 (title, image, description, price, created_at)
 VALUES (:title, :image, :description, :price, :date)");
 
         $statement->bindValue(':title', $title);
-        $statement->bindValue(':image', '');
+        $statement->bindValue(':image', $imagePath);
         $statement->bindValue(':description', $description);
         $statement->bindValue(':price', $price);
         $statement->bindValue(':date', $date);
-
         $statement->execute();
+        header('Location: index.php');
+        exit;
     }
 }
 ?>
@@ -70,15 +101,15 @@ VALUES (:title, :image, :description, :price, :date)");
         </div>
         <div class="mb-3">
             <label>Product Title</label>
-            <input type="text" class="form-control" name="title" value="<?php echo $title?>">
+            <input type="text" class="form-control" name="title" value="<?php echo $title ?>">
         </div>
         <div class="mb-3">
             <label>Product Description</label>
-            <textarea class="form-control" name="description" value="<?php echo $description?>"></textarea>
+            <textarea class="form-control" name="description" value="<?php echo $description ?>"></textarea>
         </div>
         <div class="mb-3">
             <label>Product Price</label>
-            <input type="number" step='0.01' class="form-control" name="price" value="<?php echo $price?>">
+            <input type="number" step='0.01' class="form-control" name="price" value="<?php echo $price ?>">
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
