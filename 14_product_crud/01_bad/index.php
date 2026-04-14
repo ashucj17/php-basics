@@ -47,17 +47,15 @@ $products = $statement->fetchAll(PDO::FETCH_ASSOC);
                 <tr>
                     <th scope="row"><?php echo $i + 1 ?></th>
                     <td>
-                        <img src="<?php echo $product['image'] ?>" alt="product_image">
+                        <img src="<?php echo $product['image'] ?>" class="thumb_image" alt="product_image">
                     </td>
                     <td><?php echo $product['title'] ?></td>
                     <td><?php echo $product['price'] ?></td>
                     <td><?php echo $product['created_at'] ?></td>
                     <td>
-                        <button type="button" class="btn btn-sm btn-outline-primary">Edit</button>
-                        <button type="button" class="btn btn-sm btn-outline-danger">Delete</button>
+                        <a href="update.php?id=<?php echo $product['id'] ?>" type="button" class="btn btn-sm btn-outline-primary">Edit</a>
+                        <a href="delete.php?id=<?php echo $product['id'] ?>" type="button" class="btn btn-sm btn-outline-danger">Delete</a>
                     </td>
-                    
-                    
                 </tr>
             <?php endforeach; ?>
         </tbody>
